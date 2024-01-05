@@ -17,7 +17,7 @@ const useContractFeatureData = (initialDetails?: FeatureDetails) => {
   const getFeatureProps = (feature: keyof FeatureDetails) => {
     return {
       setDetails: getFeatureUpdateDel(feature),
-      initialDetails: featureData[feature],
+      details: featureData[feature],
     };
   };
 

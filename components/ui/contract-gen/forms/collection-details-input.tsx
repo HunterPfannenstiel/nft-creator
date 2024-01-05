@@ -5,21 +5,22 @@ import { useEffect } from "react";
 
 type Props = {
   setDetails: FormUpdateDel<CollectionDetails>;
-  initialDetails?: CollectionDetails;
+  details: CollectionDetails;
 };
 
 const CollectionDetailsInput: PageComponent<Props> = ({
   setValidity,
   setDetails,
-  initialDetails,
+  details,
 }) => {
   useEffect(() => {
-    if (!initialDetails || !initialDetails.name || !initialDetails.image) {
+    if (!details.name) {
+      //|| !details.image
       setValidity(false);
     } else {
       setValidity(true);
     }
-  }, [initialDetails]);
+  }, [details]);
   const nameHandler = (value: string) => {
     setDetails("name", value);
   };
@@ -32,14 +33,14 @@ const CollectionDetailsInput: PageComponent<Props> = ({
         labelText="Name"
         id="collection-name"
         onChange={nameHandler}
-        value={initialDetails?.name}
+        value={details.name}
         required
       />
       <FieldInput
         labelText="Summary"
         id="collection-summary"
         onChange={summaryHandler}
-        value={initialDetails?.summary}
+        value={details.summary}
         required
       />
     </fieldset>

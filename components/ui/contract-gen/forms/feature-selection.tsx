@@ -12,29 +12,28 @@ import { useEffect } from "react";
 type Props = {
   features: FeatureDetail[];
   setFeature: FormUpdateDel<FeatureSelections>;
-  initialFeatures?: FeatureSelections;
+  selectedFeatures: FeatureSelections;
 };
 
 const FeatureSelection: PageComponent<Props> = ({
   setValidity,
   features,
   setFeature,
-  initialFeatures,
+  selectedFeatures,
 }) => {
   useEffect(() => {
-    setValidity(!!initialFeatures);
-  }, [initialFeatures]);
+    setValidity(true);
+  }, []);
 
   const featureHandler = (feature: ContractFeature) => {
-    if (initialFeatures === undefined) setFeature(feature, true);
-    else setFeature(feature, !initialFeatures[feature]);
+    setFeature(feature, !!!selectedFeatures[feature]);
   };
 
   const options: Option[] = features.map((feature) => {
     return {
       label: feature.label,
       id: feature.name,
-      checked: initialFeatures ? !!initialFeatures[feature.name] : false,
+      checked: !!selectedFeatures[feature.name],
     };
   });
   return (
@@ -48,3 +47,5 @@ const FeatureSelection: PageComponent<Props> = ({
     />
   );
 };
+
+export default FeatureSelection;

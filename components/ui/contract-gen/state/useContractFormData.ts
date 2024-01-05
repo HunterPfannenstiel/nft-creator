@@ -45,7 +45,7 @@ const useContractFormData = (
   const getDetailProps = () => {
     return {
       setDetails: setCollectionDetails,
-      initialDetails: contractData.collectionDetails,
+      details: contractData.collectionDetails,
     };
   };
 
@@ -59,7 +59,7 @@ const useContractFormData = (
   const getFeatureProps = () => {
     return {
       setFeature: setContractFeatures,
-      initialFeatures: contractData.contractFeatures,
+      selectedFeatures: contractData.contractFeatures,
     };
   };
 
@@ -89,7 +89,7 @@ const getInitialData = (initialData?: ContractData): ContractData => {
   if (initialData) return initialData;
   return {
     contractType: undefined,
-    collectionDetails: undefined,
-    contractFeatures: undefined,
+    collectionDetails: {},
+    contractFeatures: {},
   };
 };

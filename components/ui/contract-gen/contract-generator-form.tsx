@@ -1,49 +1,22 @@
-import { FunctionComponent, useEffect, useState } from "react";
-import useContractFormData from "./state/useContractFormData";
-import { ContractFeature, FeatureDetails, FeatureInfo } from "./types";
-import { PageDetail } from "@/lib/pages/types";
-import Page from "@/lib/pages/page";
-import Pages from "@/lib/pages";
+"use client";
 
-type SelectedFeaturePage = { feature: ContractFeature } & PageDetail;
+import { FunctionComponent } from "react";
+import { FeatureDetails, FeatureInfo } from "./types";
+import Pages from "@/lib/pages";
+import useContractPages from "./state/useContractPages";
 
 type Props = {
   featureInfo: FeatureInfo;
 };
 
 const ContractGeneratorForm: FunctionComponent<Props> = ({ featureInfo }) => {
-  const formData = useContractFormData();
-  const [featurePages, setFeaturePages] = useState<SelectedFeaturePage[]>([]);
+  const formData = useContractPages();
 
   const submitHandler = () => {
-    console.log("submit!");
+    console.log(formData.contractData);
   };
-  useEffect(() => {
-    const features = formData.getSelectedFeatures();
-    const newFeatures = features.filter(
-      (f) => featurePages.findIndex((p) => p.feature === f) === -1
-    );
-    const pages = getNewFeatureComponents(newFeatures, featureInfo);
-    const newFeaturePages = pages.map((page) => {
-      return {
-        page: (
-          <Page
-            as={page!.component}
-            {...formData.getFeatureDetailProps(page!.feature)}
-          />
-        ),
-        feature: page!.feature,
-        title: <>{featureInfo[page!.feature].label}</>,
-      };
-    });
 
-    if (pages.length !== 0) {
-      setFeaturePages((prevPages) => {
-        return [...prevPages, ...newFeaturePages];
-      });
-    }
-  }, [formData.contractData.contractFeatures]);
-  return <Pages pages={featurePages} onSubmit={submitHandler} />;
+  return <Pages pages={formData.getContractPages()} onSubmit={submitHandler} />;
 };
 
 export default ContractGeneratorForm;

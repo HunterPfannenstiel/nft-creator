@@ -15,8 +15,8 @@ export type FeatureSelections = { [Feature in ContractFeature]?: boolean };
 
 export type ContractData = {
   contractType?: ContractType;
-  collectionDetails?: CollectionDetails;
-  contractFeatures?: FeatureSelections;
+  collectionDetails: CollectionDetails;
+  contractFeatures: FeatureSelections;
 };
 
 //Feature Types
@@ -60,3 +60,8 @@ export type ContractFeatureInput<
 > = FunctionComponent<ContractFeatureInputProps<F> & Props> & { feature: F };
 
 export type FeatureDetail = { name: ContractFeature; label: string };
+
+export const FeatureOptions: FeatureDetail[] = [
+  { name: "airdrop", label: "Airdrop" },
+  { name: "voucher", label: "Voucher" },
+];
