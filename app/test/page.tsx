@@ -2,7 +2,7 @@
 
 import classes from "./page.module.css";
 import Pages from "@/lib/pages";
-import { PageDetail } from "@/lib/pages/pages";
+import { PageDetail } from "@/lib/pages/types";
 import { FunctionComponent, useState } from "react";
 import TestPage1 from "./test-page";
 import TestPage2 from "./test-page2";

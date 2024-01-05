@@ -1,4 +1,4 @@
-import { PageComponentProps } from "@/lib/pages/pages";
+import { PageComponentProps } from "@/lib/pages/types";
 import { FunctionComponent, ReactNode, useContext, createContext } from "react";
 
 const PageData = createContext<PageComponentProps>({

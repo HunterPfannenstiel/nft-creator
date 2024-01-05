@@ -9,15 +9,14 @@ type SelectionInputProps = {
   layout?: Layout;
   gap?: string;
   inputLayout?: Layout;
-  onClick: (id: string) => void;
+  onClick: (option: Option) => void;
   labelClassName?: string;
   inputLabelClassName?: string;
-  generalInputProps: Omit<
+  generalInputProps?: Omit<
     ComponentPropsWithRef<"input">,
     "type" & "checked" & "onClick"
-  > & {
-    type: "checkbox" | "radio";
-  };
+  > & {};
+  type: "checkbox" | "radio";
 };
 
 const SelectionInput: FunctionComponent<SelectionInputProps> = ({
@@ -30,6 +29,7 @@ const SelectionInput: FunctionComponent<SelectionInputProps> = ({
   labelClassName,
   inputLabelClassName,
   generalInputProps,
+  type,
 }) => {
   return (
     <LabelInput
@@ -49,8 +49,9 @@ const SelectionInput: FunctionComponent<SelectionInputProps> = ({
                 {...generalInputProps}
                 checked={option.checked}
                 onClick={() => {
-                  onClick(option.id);
+                  onClick(option);
                 }}
+                type={type}
               />
             }
           />

@@ -6,6 +6,7 @@ import {
   ContractType,
   FormUpdateDel,
   FeatureDetails,
+  ContractFeature,
 } from "../types";
 import useContractFeatureData from "./useContractFeatureData";
 
@@ -62,6 +63,15 @@ const useContractFormData = (
     };
   };
 
+  const getSelectedFeatures = (): Array<ContractFeature> => {
+    const { contractFeatures } = contractData;
+    if (contractFeatures) {
+      const features = Object.keys(contractFeatures) as ContractFeature[]; //Features marked as true (and not false)
+      return features.filter((feature) => contractFeatures[feature]);
+    }
+    return [];
+  };
+
   return {
     contractData,
     getTypeProps,
@@ -69,6 +79,7 @@ const useContractFormData = (
     getFeatureProps,
     featureDetails,
     getFeatureDetailProps,
+    getSelectedFeatures,
   };
 };
 

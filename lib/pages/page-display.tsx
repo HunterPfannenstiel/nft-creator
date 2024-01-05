@@ -1,5 +1,5 @@
 import classes from "./page-display.module.css";
-import { PageButtons } from "@/lib/pages/pages";
+import { PageButtons } from "@/lib/pages/types";
 import { FunctionComponent, ReactElement } from "react";
 
 type PageDisplayProps = {

@@ -14,5 +14,3 @@ const Page = <T extends ElementType>({
 };
 
 export default Page;
-
-export type PageComponent = typeof Page;

@@ -1,5 +1,5 @@
 import { ComponentPropsWithoutRef, ElementType } from "react";
-import { PageComponentProps } from "../lib/pages/pages";
+import { PageComponentProps } from "../lib/pages/types";
 
 type AsProp<C extends ElementType> = { as?: C };
 

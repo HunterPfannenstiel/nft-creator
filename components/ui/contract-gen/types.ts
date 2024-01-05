@@ -1,6 +1,5 @@
-import { FormData } from "@/lib/form-data/types";
 import { InputImage } from "@/types";
-import { FunctionComponent, ReactElement } from "react";
+import { FunctionComponent } from "react";
 
 export type CollectionDetails = {
   name?: string;
@@ -12,7 +11,7 @@ export type FormUpdateDel<T> = <U extends keyof T>(key: U, value: T[U]) => void;
 
 export type ContractType = "ERC721" | "ERC1155";
 
-export type FeatureSelections = FormData<boolean>;
+export type FeatureSelections = { [Feature in ContractFeature]?: boolean };
 
 export type ContractData = {
   contractType?: ContractType;
@@ -59,3 +58,5 @@ export type ContractFeatureInput<
   F extends keyof FeatureDetails,
   Props = {}
 > = FunctionComponent<ContractFeatureInputProps<F> & Props> & { feature: F };
+
+export type FeatureDetail = { name: ContractFeature; label: string };

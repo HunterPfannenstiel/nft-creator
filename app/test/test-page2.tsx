@@ -1,4 +1,4 @@
-import { PageComponentProps } from "@/lib/pages/pages";
+import { PageComponentProps } from "@/lib/pages/types";
 import { FunctionComponent, useEffect } from "react";
 
 type TestPageProps = {

@@ -1,5 +1,5 @@
 import useValidState from "@/lib/pages/state/useValidState";
-import { PageButtons, PageDetail, SummaryComponent } from "@/lib/pages/pages";
+import { PageButtons, PageDetail, SummaryComponent } from "@/lib/pages/types";
 import {
   ComponentPropsWithoutRef,
   FunctionComponent,

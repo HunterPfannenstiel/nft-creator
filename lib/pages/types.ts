@@ -6,6 +6,10 @@ type PageNavigator = (page: number) => void;
 
 export type PageComponentProps = { setValidity: ValidityDel };
 
+export type PageComponent<Props = {}> = FunctionComponent<
+  PageComponentProps & Props
+>;
+
 export type SummaryComponentProps = {
   navigateToPage: PageNavigator | undefined;
 };

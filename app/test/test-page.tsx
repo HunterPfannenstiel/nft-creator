@@ -1,5 +1,5 @@
 import classes from "./test-page.module.css";
-import { PageComponentProps } from "@/lib/pages/pages";
+import { PageComponentProps } from "@/lib/pages/types";
 import { FunctionComponent } from "react";
 
 type TestPageProps = {} & PageComponentProps;
