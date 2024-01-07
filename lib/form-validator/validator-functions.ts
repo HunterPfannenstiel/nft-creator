@@ -1,3 +1,8 @@
+import {
+	ERC1155IVD,
+	InitialVoucherDetails,
+	VoucherCreationDetails,
+} from '@/types/voucher';
 import { InputFieldValidators } from './types';
 
 export const validateEthereumAddress = (address: string) => {
@@ -5,6 +10,7 @@ export const validateEthereumAddress = (address: string) => {
 };
 
 export const validateIntegerInput = (numberString: string) => {
+	if (numberString === '') return false;
 	if (isNaN(+numberString)) return false; // if numberString is not a number after conversion attempt, return false
 	return !numberString.includes('.'); // if numberString contains a decimal, it's not a valid integer
 };
@@ -20,15 +26,15 @@ export const validateDate = (date: string) => {
 };
 
 export const getVoucherFormCreationValidators = (
-	creationObj: VoucherCreationDetails
+	creationObj: InitialVoucherDetails
 ) => {
 	const validators: InputFieldValidators = {
 		claimerAddress: validateEthereumAddress,
 		metadata: validateUrl,
 	};
 
-	if (creationObj.allowsExpiration) validators.expirationDate = validateDate;
-	if (creationObj.contractType === 'ERC1155') {
+	if (creationObj.expirationAllowed) validators.expirationDate = validateDate;
+	if (creationObj instanceof ERC1155IVD) {
 		validators.tokenAmount = validateIntegerInput;
 		if ('tokenId' in creationObj) {
 			validators.tokenId = validateIntegerInput;

@@ -7,7 +7,7 @@ const useFormValidator = (
 ) => {
 	const [validForm, setValidForm] = useState<boolean>(false);
 	const [invalidFields, setInvalidFields] = useState<Set<string>>(
-		new Set(...formFieldNames)
+		new Set(formFieldNames)
 	);
 
 	const fieldChangedHandler = (fieldName: string, fieldValue: string) => {

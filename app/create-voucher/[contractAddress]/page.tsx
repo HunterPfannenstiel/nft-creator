@@ -1,29 +1,17 @@
 import { FunctionComponent, Suspense } from 'react';
 import classes from './CreateVoucherPage.module.css';
 import { getVoucherFormCreationValidators } from '@/lib/form-validator/validator-functions';
+import VoucherCreationForm from '@/components/ui/voucher-creation/VoucherCreationForm';
+import { ERC721IVD, VoucherCreationDetails } from '@/types/voucher';
 
 interface CreateVoucherPageProps {
 	params: { contractAddress: string };
 }
 
-// retrieve
-
 const GetJSX = async ({ contractAddress }: { contractAddress: string }) => {
-	const contractType = 'ERC721'; // fetch actual contract type w/ address, will also get additional info (like allowsExpiration)
+	const creationObj = new ERC721IVD(contractAddress, true); // this should be fetched as an InitialVoucherDetails obj
 
-	const creationObj: VoucherCreationDetails = {
-		contractAddress,
-		contractType,
-		allowsExpiration: false,
-	};
-
-	const validators = getVoucherFormCreationValidators(creationObj);
-
-	if (contractType === 'ERC721') {
-		return <p>Render Voucher Creation form w/ ERC721 specifics</p>;
-	} else {
-		return <p>Render Voucher Creation form w/ ERC1155 specifics</p>;
-	}
+	return <VoucherCreationForm creationObj={creationObj} />;
 };
 
 const CreateVoucherPage: FunctionComponent<CreateVoucherPageProps> = ({
