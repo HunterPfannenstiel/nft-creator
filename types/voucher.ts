@@ -1,7 +1,7 @@
-import { ContractType } from '@/components/ui/contract-gen/types';
+import { ContractType } from '@/components/ui/contract-gen/types'; // ContractType could be in a better file location
 
 export type VoucherCreationDetails = {
-	contractType: 'ERC721' | 'ERC1155'; // change to 'ContractType' when type is created
+	contractType: ContractType;
 	contractAddress: string;
 	expirationAllowed: boolean;
 } & (
