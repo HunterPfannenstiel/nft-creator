@@ -3,11 +3,11 @@ import { InputFieldValidators } from './types';
 
 const useFormValidator = (
 	inputFieldValidators: InputFieldValidators,
-	formFieldNames: string[]
+	initialInvalidFields: string[]
 ) => {
 	const [validForm, setValidForm] = useState<boolean>(false);
 	const [invalidFields, setInvalidFields] = useState<Set<string>>(
-		new Set(formFieldNames)
+		new Set(initialInvalidFields)
 	);
 
 	const fieldChangedHandler = (fieldName: string, fieldValue: string) => {

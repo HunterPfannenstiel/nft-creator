@@ -26,15 +26,15 @@ export const validateDate = (date: string) => {
 };
 
 export const getVoucherFormCreationValidators = (
-	creationObj: InitialVoucherDetails
+	creationObj: VoucherCreationDetails
 ) => {
 	const validators: InputFieldValidators = {
 		claimerAddress: validateEthereumAddress,
 		metadata: validateUrl,
 	};
 
-	if (creationObj.expirationAllowed) validators.expirationDate = validateDate;
-	if (creationObj instanceof ERC1155IVD) {
+	if (creationObj.expirationAllowed) validators.expiration = validateDate;
+	if (creationObj.contractType === 'ERC1155') {
 		validators.tokenAmount = validateIntegerInput;
 		if ('tokenId' in creationObj) {
 			validators.tokenId = validateIntegerInput;
@@ -43,4 +43,19 @@ export const getVoucherFormCreationValidators = (
 	}
 
 	return validators;
+};
+
+export const getInitialInvalidFields = (
+	creationObj: VoucherCreationDetails
+) => {
+	const initialInvalidFields = ['claimerAddress'];
+
+	if (creationObj.contractType === 'ERC721') {
+		initialInvalidFields.push('metadata');
+	} else if (creationObj.contractType === 'ERC1155') {
+		initialInvalidFields.push('tokenAmount');
+		if (!creationObj.tokenMetadata) initialInvalidFields.push('metadata');
+	}
+
+	return initialInvalidFields;
 };

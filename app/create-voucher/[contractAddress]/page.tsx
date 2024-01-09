@@ -2,7 +2,7 @@ import { FunctionComponent, Suspense } from 'react';
 import classes from './CreateVoucherPage.module.css';
 import { getVoucherFormCreationValidators } from '@/lib/form-validator/validator-functions';
 import VoucherCreationForm from '@/components/ui/voucher-creation/VoucherCreationForm';
-import { ERC721IVD, VoucherCreationDetails } from '@/types/voucher';
+import { ERC1155IVD, ERC721IVD, VoucherCreationDetails } from '@/types/voucher';
 
 interface CreateVoucherPageProps {
 	params: { contractAddress: string };
@@ -10,8 +10,7 @@ interface CreateVoucherPageProps {
 
 const GetJSX = async ({ contractAddress }: { contractAddress: string }) => {
 	const creationObj = new ERC721IVD(contractAddress, true); // this should be fetched as an InitialVoucherDetails obj
-
-	return <VoucherCreationForm creationObj={creationObj} />;
+	return <VoucherCreationForm creationObj={creationObj.toJson()} />;
 };
 
 const CreateVoucherPage: FunctionComponent<CreateVoucherPageProps> = ({
