@@ -55,3 +55,16 @@ export class ERC1155IVD extends InitialVoucherDetails {
 		};
 	}
 }
+
+export type VoucherDetails = {
+	contractAddress: string;
+	contractType: ContractType;
+	creatorAddress: string;
+	claimerAddress: string;
+	metadataURL: string;
+	imageURL: string;
+	redeemed: boolean;
+	tokenAmount?: number;
+}
+
+export type VoucherFilter = 'created' | 'pending' | 'claimed'
