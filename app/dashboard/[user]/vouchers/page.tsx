@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { VoucherFilter } from '@/types/voucher';
 import { redirect } from 'next/navigation';
 import HighlightLink from '@/components/ui/reusable/links/HighlightLink';
+import Voucher from '@/components/ui/voucher/Voucher';
 
 const getVoucherFilter = (
 	user: string,
@@ -64,18 +65,9 @@ const UserDashboardVouchersPage: FunctionComponent<
 				</HighlightLink>
 			</nav>
 			{vouchers.map((voucher) => (
-				<>
-					<p>
-						{voucher.contractAddress}, {voucher.contractType}
-					</p>
-					<p>{voucher.claimerAddress}</p>
-					<Image
-						src={voucher.imageURL}
-						alt={'voucher'}
-						width={50}
-						height={50}
-					/>
-				</>
+				<div key={voucher.metadataURL} style={{ margin: '1rem 0' }}>
+					<Voucher voucherDetails={voucher} />
+				</div>
 			))}
 		</>
 	);

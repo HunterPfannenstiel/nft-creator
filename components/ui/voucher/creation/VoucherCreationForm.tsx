@@ -7,7 +7,7 @@ import {
 	getInitialInvalidFields,
 	getVoucherFormCreationValidators,
 } from '@/lib/form-validator/validator-functions';
-import FieldInput from '../reusable/label-input/field-input';
+import FieldInput from '../../reusable/label-input/field-input';
 import { VoucherCreationDetails } from '@/types/voucher';
 import { concatClassNames } from '@/utils/css';
 import { useFormState } from 'react-dom';

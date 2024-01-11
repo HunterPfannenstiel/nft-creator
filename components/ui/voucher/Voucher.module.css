@@ -1,0 +1,74 @@
+.voucher {
+	min-width: 200px;
+    width: 100%;
+	max-width: 400px;
+    transition: all 0.25s;
+}
+
+.voucher:hover {
+    cursor: pointer;
+    transform: translateX(1rem);
+    box-shadow: -2px 0px 2px 2px rgba(0, 0, 0, 0.301);
+}
+
+.redeemed {
+	border: 2px solid green;
+}
+
+.not_redeemed {
+	border: 2px solid red;
+}
+
+.outer_section {
+	display: flex;
+    justify-content: space-between;
+}
+
+.outer_section p {
+    text-align: center;
+}
+
+.outer_section p:first-child {
+    text-align: left;
+}
+
+.outer_section p:last-child {
+    text-align: right;
+}
+
+.outer_section:first-of-type {
+	border-bottom: 2px solid black;
+}
+
+.outer_section:last-of-type {
+	border-top: 2px solid black;
+}
+
+.inner_section {
+	display: flex;
+	height: 100px;
+}
+
+.img_container {
+	flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img {
+    height: 75px;
+    width: 75px;
+    border-radius: 50%;
+    border: 2px solid black;
+}
+
+.attributes {
+	flex: 1;
+    height: 100%;
+}
+
+.attribute_list {
+    height: 75%;
+    overflow-y: scroll;
+}

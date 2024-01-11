@@ -59,6 +59,7 @@ export class ERC1155IVD extends InitialVoucherDetails {
 export type VoucherDetails = {
 	contractAddress: string;
 	contractType: ContractType;
+	contractName: string;
 	creatorAddress: string;
 	claimerAddress: string;
 	metadataURL: string;

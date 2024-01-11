@@ -19,6 +19,10 @@ const useFormValidator = (
 			console.log(
 				`The input '${fieldName}' doesn't have an associated validator function`
 			);
+			if ('fallback' in inputFieldValidators) {
+				validInputValue = inputFieldValidators['fallback'](fieldValue);
+				console.log('Using fallback validator for ' + fieldName);
+			}
 		}
 
 		if (validInputValue) invalidFields.delete(fieldName);

@@ -3,5 +3,5 @@ export const concatClassNames = (...classNames: (string | undefined)[]) => {
   classNames.forEach((className) => {
     if (className) classes.push(className);
   });
-  return classes.join(",").trim() || undefined;
+  return classes.join(" ").trim() || undefined;
 };

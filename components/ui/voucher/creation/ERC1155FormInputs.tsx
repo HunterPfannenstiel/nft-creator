@@ -1,17 +1,17 @@
 import { FunctionComponent } from 'react';
-import FieldInput from '../reusable/label-input/field-input';
+import FieldInput from '../../reusable/label-input/field-input';
 import { concatClassNames } from '@/utils/css';
-import { ERC721IVD } from '@/types/voucher';
+import { ERC1155IVD, VoucherCreationDetails } from '@/types/voucher';
 
-interface ERC721FormInputsProps {
-	creationObj: ERC721IVD;
+interface ERC1155FormInputsProps {
+	creationObj: ERC1155IVD;
 	invalidFields: Set<string>;
 	validClassName: string;
 	invalidClassName: string;
 	className?: string;
 }
 
-const ERC721FormInputs: FunctionComponent<ERC721FormInputsProps> = ({
+const ERC1155FormInputs: FunctionComponent<ERC1155FormInputsProps> = ({
 	creationObj,
 	invalidFields,
 	invalidClassName,
@@ -31,6 +31,7 @@ const ERC721FormInputs: FunctionComponent<ERC721FormInputsProps> = ({
 						: validClassName,
 					className
 				)}
+				required
 			/>
 			<FieldInput
 				labelText="Token Metadata"
@@ -41,9 +42,27 @@ const ERC721FormInputs: FunctionComponent<ERC721FormInputsProps> = ({
 					invalidFields.has('metadata') ? invalidClassName : validClassName,
 					className
 				)}
+				defaultValue={creationObj.tokenMetadata || ''}
+				readOnly={'tokenMetadata' in creationObj}
+				required
+			/>
+			<FieldInput
+				labelText="Token Amount"
+				id="tokenAmount"
+				name="tokenAmount"
+				onChange={(val) => {}}
+				className={concatClassNames(
+					invalidFields.has('tokenAmount') ? invalidClassName : validClassName,
+					className
+				)}
+				type="number"
+				min={1}
+				step={1}
+				defaultValue={1}
+				required
 			/>
 		</>
 	);
 };
 
-export default ERC721FormInputs;
+export default ERC1155FormInputs;

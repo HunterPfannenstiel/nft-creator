@@ -14,6 +14,7 @@ export const getUserVouchers = async (
 		{
 			contractAddress: '0xabcdef',
 			contractType: 'ERC721',
+			contractName: "Mike W's Amazing Creations",
 			creatorAddress: user,
 			claimerAddress: '0xaaaaa',
 			metadataURL: 'https://some-pinata-link.com',
@@ -21,9 +22,10 @@ export const getUserVouchers = async (
 				'https://upload.wikimedia.org/wikipedia/en/thumb/6/6a/Mike_Wazowski.png/220px-Mike_Wazowski.png',
 			redeemed: voucherFilter === 'claimed',
 		},
-        {
+		{
 			contractAddress: '0xabcdef',
 			contractType: 'ERC721',
+			contractName: "Mike W's Amazing Creations",
 			creatorAddress: user,
 			claimerAddress: '0xaaaaa',
 			metadataURL: 'https://some-pinata-link.com',
@@ -31,9 +33,10 @@ export const getUserVouchers = async (
 				'https://upload.wikimedia.org/wikipedia/en/thumb/6/6a/Mike_Wazowski.png/220px-Mike_Wazowski.png',
 			redeemed: voucherFilter === 'claimed',
 		},
-        {
+		{
 			contractAddress: '0xabcdef',
 			contractType: 'ERC721',
+			contractName: "Mike W's Amazing Creations",
 			creatorAddress: user,
 			claimerAddress: '0xaaaaa',
 			metadataURL: 'https://some-pinata-link.com',

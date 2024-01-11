@@ -1,8 +1,7 @@
 import { FunctionComponent, Suspense } from 'react';
 import classes from './CreateVoucherPage.module.css';
-import { getVoucherFormCreationValidators } from '@/lib/form-validator/validator-functions';
-import VoucherCreationForm from '@/components/ui/voucher-creation/VoucherCreationForm';
 import { ERC1155IVD, ERC721IVD, VoucherCreationDetails } from '@/types/voucher';
+import VoucherCreationForm from '@/components/ui/voucher/creation/VoucherCreationForm';
 
 interface CreateVoucherPageProps {
 	params: { contractAddress: string };
