@@ -8,7 +8,7 @@ interface CreateVoucherPageProps {
 }
 
 const GetJSX = async ({ contractAddress }: { contractAddress: string }) => {
-	const creationObj = new ERC721IVD(contractAddress, true); // this should be fetched as an InitialVoucherDetails obj
+	const creationObj = new ERC721IVD(contractAddress, false); // this should be fetched as an InitialVoucherDetails obj
 	return <VoucherCreationForm creationObj={creationObj.toJson()} />;
 };
 

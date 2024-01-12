@@ -17,7 +17,7 @@ export const createVoucherFromForm = async (
 	prevState: { message: string }, // The reason why the previous form was invalid
 	formData: FormData // The current form data
 ) => {
-	console.log({ creationObj, prevState, formData });
+	console.log({ creationObj, prevState });
 	/* if (!validateEthereumAddress(creatorAddress)) {
 		return {
 			message: "Creator's address is invalid",
@@ -36,12 +36,12 @@ export const createVoucherFromForm = async (
 		}
 	}
 
-	const metadata = formData.get('metadata')?.toString();
+	/* 	const metadata = formData.get('metadata')?.toString();
 	if (!metadata || !validateUrl(metadata)) {
 		return {
 			message: 'Metadata invalid',
 		};
-	}
+	} */
 
 	const claimerAddress = formData.get('claimerAddress')?.toString();
 	if (!claimerAddress || !validateEthereumAddress(claimerAddress)) {
@@ -50,19 +50,27 @@ export const createVoucherFromForm = async (
 		};
 	}
 
-	console.log({ metadata, claimerAddress });
+	console.log({ claimerAddress });
+
+	// At this point, loop through formData looking for items that are not required -> these are the attributes
 
 	if (contractType === 'ERC721') {
+		// Get token image and attributes -> create metadata URL
 		// Send a database call to add voucher
 	} else if (contractType === 'ERC1155') {
-		let { tokenId } = creationObj;
-		if (!tokenId) tokenId = -1;
-
 		const tokenAmount = formData.get('tokenAmount')?.toString();
 		if (!tokenAmount || !validateIntegerInput(tokenAmount)) {
 			return {
 				message: 'A token amount was not provided or was invalid',
 			};
+		}
+
+		const tokenId =
+			creationObj.tokenId !== undefined ? creationObj.tokenId : -1;
+		if (tokenId === -1) {
+			// Get token image and metadata -> get metadata URL
+		} else {
+			// There's no need for metadata if the token already exists
 		}
 
 		// Send database call to add voucher

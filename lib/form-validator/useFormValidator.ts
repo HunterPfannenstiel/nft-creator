@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { InputFieldValidators } from './types';
 
 const useFormValidator = (
@@ -10,8 +10,13 @@ const useFormValidator = (
 		new Set(initialInvalidFields)
 	);
 
+	useEffect(() => {
+		const formIsValid = invalidFields.size === 0;
+		if (formIsValid !== validForm) setValidForm(formIsValid);
+	}, [invalidFields]);
+
 	const fieldChangedHandler = (fieldName: string, fieldValue: string) => {
-		let validInputValue = fieldValue == '';
+		let validInputValue = fieldValue !== '';
 
 		if (fieldName in inputFieldValidators) {
 			validInputValue = inputFieldValidators[fieldName](fieldValue);
@@ -25,20 +30,29 @@ const useFormValidator = (
 			}
 		}
 
-		if (validInputValue) invalidFields.delete(fieldName);
-		else invalidFields.add(fieldName);
+		let setChanged = false;
+		if (validInputValue) setChanged = invalidFields.delete(fieldName);
+		else {
+			const prevSize = invalidFields.size;
+			invalidFields.add(fieldName);
+			setChanged = invalidFields.size !== prevSize;
+		}
 
-		if (invalidFields.size === 0) setValidForm(true);
-		else setValidForm(false);
-
-		setInvalidFields(new Set(invalidFields));
+		if (setChanged) setInvalidFields(new Set(invalidFields));
 		return validInputValue;
+	};
+
+	const fieldRemoved = (fieldName: string) => {
+		if (invalidFields.delete(fieldName)) {
+			setInvalidFields(new Set(invalidFields));
+		}
 	};
 
 	return {
 		validForm,
 		invalidFields,
 		fieldChangedHandler,
+		fieldRemoved,
 	};
 };
 
