@@ -1,0 +1,22 @@
+[
+  {
+    "contractAddress": "0xabcdef",
+    "contractType": "ERC721",
+    "contractName": "Mike W's Amazing Creations",
+    "creatorAddress": "0x012345",
+    "claimerAddress": "0xaaaaa",
+    "metadataURL": "https://some-pinata-link.com",
+    "imageURL": "https://upload.wikimedia.org/wikipedia/en/thumb/6/6a/Mike_Wazowski.png/220px-Mike_Wazowski.png",
+    "redeemed": false
+  },
+  {
+    "claimerAddress": "0xbE8Caf82259D44EeCd0A6BcdB82655a4F6711b1A",
+    "contractAddress": "0xabcdef",
+    "creatorAddress": "0xabcdef",
+    "contractType": "ERC721",
+    "metadataURL": "https://get-metadata.com",
+    "imageURL": "https://upload.wikimedia.org/wikipedia/en/thumb/6/6a/Mike_Wazowski.png/220px-Mike_Wazowski.png",
+    "redeemed": false,
+    "contractName": "Mike W's Amazing Creations"
+  }
+]

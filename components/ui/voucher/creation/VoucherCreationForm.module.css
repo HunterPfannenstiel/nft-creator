@@ -1,7 +1,46 @@
+.form {
+    margin: auto;
+    padding: 0 1rem;
+    max-width: 500px;
+}
+
 .form > * {
     margin: 1rem 0;
 }
 
 .form button {
     display: block;
+}
+
+input.invalid, .dynamic_input.invalid input {
+    border: 2px solid red;
+}
+
+input.valid, .dynamic_input.valid input {
+    border: 2px solid green;
+}
+
+.dynamic_input, .input {
+    position: relative;
+    display: flex;
+    width: 100%;
+}
+
+.dynamic_input > div {
+    flex: 1;
+}
+
+.dynamic_input > button {
+    position: absolute;
+    right: -7.5px;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 50%;
+    height: 15px;
+    width: 15px;
+    background-color: rgba(255, 83, 83, 0.363);
+}
+
+.dynamic_input > button:hover {
+    cursor: pointer;
 }

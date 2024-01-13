@@ -60,9 +60,9 @@ const VoucherCreationForm: FunctionComponent<VoucherCreationFormProps> = ({
 				name="claimerAddress"
 				onChange={(val) => {}}
 				className={concatClassNames(
-					invalidFields.has('claimerAddress') ? classes.invalid : classes.valid,
-					classes.input
+					invalidFields.has('claimerAddress') ? classes.invalid : classes.valid
 				)}
+				containerClassName={classes.input}
 			/>
 			{creationObj.expirationAllowed && (
 				<FieldInput
@@ -71,9 +71,9 @@ const VoucherCreationForm: FunctionComponent<VoucherCreationFormProps> = ({
 					name="expiration"
 					onChange={(val) => {}}
 					className={concatClassNames(
-						invalidFields.has('expiration') ? classes.invalid : classes.valid,
-						classes.input
+						invalidFields.has('expiration') ? classes.invalid : classes.valid
 					)}
+					containerClassName={classes.input}
 					type="date"
 				/>
 			)}
@@ -86,9 +86,9 @@ const VoucherCreationForm: FunctionComponent<VoucherCreationFormProps> = ({
 					accept=".png, .jpeg, image/png, image/jpeg"
 					onChange={(val) => {}}
 					className={concatClassNames(
-						invalidFields.has('tokenImage') ? classes.invalid : classes.valid,
-						classes.input
+						invalidFields.has('tokenImage') ? classes.invalid : classes.valid
 					)}
+					containerClassName={classes.input}
 				/>
 			)}
 			{creationObj.contractType === 'ERC1155' && (
@@ -98,9 +98,9 @@ const VoucherCreationForm: FunctionComponent<VoucherCreationFormProps> = ({
 					name="tokenAmount"
 					onChange={(val) => {}}
 					className={concatClassNames(
-						invalidFields.has('tokenAmount') ? classes.invalid : classes.valid,
-						classes.input
+						invalidFields.has('tokenAmount') ? classes.invalid : classes.valid
 					)}
+					containerClassName={classes.input}
 					type="number"
 					min={1}
 					step={1}
@@ -117,6 +117,17 @@ const VoucherCreationForm: FunctionComponent<VoucherCreationFormProps> = ({
 				]}
 				onChange={() => {}}
 				inputModifiedCallback={AttributeFieldModified}
+				renderInput={(inputName, inputJsx) => (
+					<div
+						className={concatClassNames(
+							invalidFields.has(inputName) ? classes.invalid : classes.valid,
+							classes.dynamic_input
+						)}
+						key={inputName}
+					>
+						{inputJsx}
+					</div>
+				)}
 			/>
 			<button type="submit" disabled={!validForm}>
 				Submit

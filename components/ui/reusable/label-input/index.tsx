@@ -1,48 +1,51 @@
-import { FunctionComponent, ReactElement } from "react";
-import { Layout } from "./types";
+import { FunctionComponent, ReactElement } from 'react';
+import { Layout } from './types';
 
 type LabelInputProps = {
-  labelText?: string;
-  layout?: Layout;
-  gap?: string;
-  inputComponent: ReactElement | ReactElement[];
-  labelClassName?: string;
-  inputId?: string;
+	labelText?: string;
+	layout?: Layout;
+	gap?: string;
+	inputComponent: ReactElement | ReactElement[];
+	labelClassName?: string;
+	inputId?: string;
+	containerClassName?: string;
 }; //& ComponentPropsWithRef<"input">;
 
 const LabelInput: FunctionComponent<LabelInputProps> = ({
-  labelText,
-  layout = "Block",
-  gap,
-  inputComponent,
-  labelClassName,
-  inputId,
+	labelText,
+	layout = 'Block',
+	gap,
+	inputComponent,
+	labelClassName,
+	inputId,
+	containerClassName = '',
 }) => {
-  return (
-    <div
-      style={{ display: "flex", flexDirection: toFlexDirection(layout), gap }}
-    >
-      {labelText && (
-        <label className={labelClassName} htmlFor={inputId}>
-          {labelText}
-        </label>
-      )}
-      {inputComponent}
-    </div>
-  );
+	return (
+		<div
+			style={{ display: 'flex', flexDirection: toFlexDirection(layout), gap }}
+			className={containerClassName}
+		>
+			{labelText && (
+				<label className={labelClassName} htmlFor={inputId}>
+					{labelText}
+				</label>
+			)}
+			{inputComponent}
+		</div>
+	);
 };
 
 export default LabelInput;
 
 const toFlexDirection = (layout: Layout) => {
-  switch (layout) {
-    case "Block":
-      return "column";
-    case "ReverseBlock":
-      return "column-reverse";
-    case "Inline":
-      return "row";
-    case "ReverseInline":
-      return "row-reverse";
-  }
+	switch (layout) {
+		case 'Block':
+			return 'column';
+		case 'ReverseBlock':
+			return 'column-reverse';
+		case 'Inline':
+			return 'row';
+		case 'ReverseInline':
+			return 'row-reverse';
+	}
 };

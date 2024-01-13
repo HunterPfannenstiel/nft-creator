@@ -7,11 +7,13 @@ import FieldInput, { FieldInputProps } from '../label-input/field-input';
 interface DynamicInputsProps extends FieldInputProps {
 	inputModifiedCallback?: (inputName: string, added: boolean) => void;
 	predefinedInputs?: string[];
+	renderInput?: (inputName: string, inputJsx: JSX.Element) => JSX.Element;
 }
 
 const DynamicInputs: FunctionComponent<DynamicInputsProps> = ({
 	inputModifiedCallback,
 	predefinedInputs,
+	renderInput = (_, inputJsx) => inputJsx,
 	...inputProps
 }) => {
 	const [dynamicInputs, setDynamicInputs] = useState<string[]>([]);
@@ -48,23 +50,26 @@ const DynamicInputs: FunctionComponent<DynamicInputsProps> = ({
 
 	return (
 		<>
-			{dynamicInputs.map((inputName) => (
-				<>
-					<FieldInput
-						key={inputName}
-						id={inputName}
-						name={inputName}
-						labelText={inputName}
-						{...inputProps}
-					/>
-					<button
-						type="button"
-						onClick={OnModifyInputs.bind(this, inputName, false)}
-					>
-						X
-					</button>
-				</>
-			))}
+			{dynamicInputs.map((inputName) =>
+				renderInput(
+					inputName,
+					<>
+						<FieldInput
+							key={inputName}
+							id={inputName}
+							name={inputName}
+							labelText={inputName}
+							{...inputProps}
+						/>
+						<button
+							type="button"
+							onClick={OnModifyInputs.bind(this, inputName, false)}
+						>
+							x
+						</button>
+					</>
+				)
+			)}
 			{addingInput && (
 				<>
 					<FieldInput

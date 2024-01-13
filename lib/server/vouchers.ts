@@ -1,5 +1,6 @@
 'use server';
-import { VoucherDetails, VoucherFilter } from '@/types/voucher';
+import { VoucherFilter } from '@/types/voucher';
+import { getFileVouchers } from './temp/db/file-contents-helpers';
 
 // make sure code runs on the server
 
@@ -9,8 +10,10 @@ export const getUserVouchers = async (
 ) => {
 	// Read from db or blockchain
 	await new Promise((resolve, reject) => setTimeout(() => resolve(''), 1000)); // simulate fetching
+	const vouchers = await getFileVouchers();
+	return vouchers.filter((voucher) => voucher.creatorAddress === user);
 
-	const vouchers: VoucherDetails[] = [
+	/* const vouchers: VoucherDetails[] = [
 		{
 			contractAddress: '0xabcdef',
 			contractType: 'ERC721',
@@ -44,6 +47,5 @@ export const getUserVouchers = async (
 				'https://upload.wikimedia.org/wikipedia/en/thumb/6/6a/Mike_Wazowski.png/220px-Mike_Wazowski.png',
 			redeemed: voucherFilter === 'claimed',
 		},
-	];
-	return vouchers;
+	]; */
 };

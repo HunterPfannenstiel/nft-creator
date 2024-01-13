@@ -7,6 +7,7 @@ export type FieldInputProps = {
 	layout?: Layout;
 	gap?: string;
 	labelClassName?: string;
+	containerClassName?: string;
 	innerRef?: RefObject<HTMLInputElement>;
 	onChange: (inputValue: string) => void;
 } & Omit<ComponentPropsWithRef<'input'>, 'onChange'>;
@@ -16,6 +17,7 @@ const FieldInput: FunctionComponent<FieldInputProps> = ({
 	layout,
 	gap,
 	labelClassName,
+	containerClassName = '',
 	onChange,
 	innerRef,
 	...inputProps
@@ -26,6 +28,7 @@ const FieldInput: FunctionComponent<FieldInputProps> = ({
 			layout={layout}
 			gap={gap}
 			labelClassName={labelClassName}
+			containerClassName={containerClassName}
 			inputId={inputProps.id}
 			inputComponent={
 				<input

@@ -1,13 +1,15 @@
 'use server';
-import { ContractDetails } from '@/types/contract-gen';
+import { getFileContracts } from './temp/db/file-contents-helpers';
 
 // make sure code is ran on the server
 
 export const getUserContracts = async (user: string) => {
 	// Read from db or blockchain
 	await new Promise((resolve, reject) => setTimeout(() => resolve(''), 1000)); // simulate fetching
+	const contracts = await getFileContracts();
+	return contracts.filter((contract) => contract.ownerAddress === user);
 
-	const contracts: ContractDetails[] = [
+	/* const contracts: ContractDetails[] = [
 		{
 			contractAddress: '0xabcdef',
 			contractType: 'ERC1155',
@@ -26,6 +28,5 @@ export const getUserContracts = async (user: string) => {
 			ownerAddress: user,
 			numTokens: 99,
 		},
-	];
-	return contracts;
+	]; */
 };
