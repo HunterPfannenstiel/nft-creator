@@ -62,10 +62,10 @@ export type VoucherDetails = {
 	contractName: string;
 	creatorAddress: string;
 	claimerAddress: string;
-	metadataURL: string;
+	attributes: { [attributeName: string]: string };
 	imageURL: string;
 	redeemed: boolean;
 	tokenAmount?: number;
-}
+};
 
-export type VoucherFilter = 'created' | 'pending' | 'claimed'
+export type VoucherFilter = 'created' | 'pending' | 'claimed';

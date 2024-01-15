@@ -5,22 +5,24 @@ import {
 	validateDate,
 	validateEthereumAddress,
 	validateIntegerInput,
-	validateUrl,
-} from '../form-validator/validator-functions';
-import { revalidatePath } from 'next/cache';
+} from '../../form-validator/validator-functions';
 import { redirect } from 'next/navigation';
 import {
 	addVoucherToFile,
-	getFileVouchers,
-} from '../server/temp/db/file-contents-helpers';
+	fileContractExists,
+	getFileContractWithAddress,
+} from '../temp/db/file-contents-helpers';
 
 const extractAttributes = (
 	formData: FormData,
 	nonAttributeFields: Set<string>
 ) => {
 	const attributes: { [attributeName: string]: string } = {};
-	formData.forEach((value, key) => {
-		if (!nonAttributeFields.has(key)) attributes[key] = value.toString();
+	formData.forEach((value, key, formData) => {
+		if (!nonAttributeFields.has(key) && !key.startsWith('$')) {
+			// hidden inputs have name starting with '$', temp fix
+			attributes[key] = value.toString();
+		}
 	});
 	return attributes;
 };
@@ -39,6 +41,11 @@ export const createVoucherFromForm = async (
 	} */
 
 	const { contractAddress, contractType, expirationAllowed } = creationObj;
+	if (!fileContractExists(contractAddress)) {
+		return {
+			message: `Contract with address '${contractAddress}' does not exist`,
+		};
+	}
 
 	let expirationDate: string = '';
 	if (expirationAllowed) {
@@ -58,7 +65,7 @@ export const createVoucherFromForm = async (
 	}
 
 	// At this point, loop through formData looking for items that are not required -> these are the attributes
-
+	let attributes: {} = { 'This will be defined': 'true' };
 	if (contractType === 'ERC721') {
 		// Get token image and attributes -> create metadata URL
 		// Send a database call to add voucher
@@ -68,7 +75,7 @@ export const createVoucherFromForm = async (
 			'tokenImage',
 			'tokenAmount',
 		]);
-		const attributes = extractAttributes(formData, nonAttributeFields);
+		attributes = extractAttributes(formData, nonAttributeFields);
 		console.log({ attributes });
 	} else if (contractType === 'ERC1155') {
 		const tokenAmount = formData.get('tokenAmount')?.toString();
@@ -88,7 +95,7 @@ export const createVoucherFromForm = async (
 				'tokenImage',
 				'tokenAmount',
 			]);
-			const attributes = extractAttributes(formData, nonAttributeFields);
+			attributes = extractAttributes(formData, nonAttributeFields);
 		} else {
 			// There's no need for metadata if the token already exists
 		}
@@ -101,7 +108,7 @@ export const createVoucherFromForm = async (
 		contractAddress,
 		creatorAddress,
 		contractType,
-		metadataURL: 'https://get-metadata.com',
+		attributes,
 		imageURL:
 			'https://upload.wikimedia.org/wikipedia/en/thumb/6/6a/Mike_Wazowski.png/220px-Mike_Wazowski.png',
 		redeemed: false,

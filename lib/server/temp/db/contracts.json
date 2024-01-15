@@ -1,12 +1,9 @@
 [
-  {
-    "contractAddress": "0xabcdef",
-    "contractType": "ERC721",
-    "contractName": "Mike W's Amazing Creations",
-    "creatorAddress": "0x012345",
-    "claimerAddress": "0xaaaaa",
-    "metadataURL": "https://some-pinata-link.com",
-    "imageURL": "https://upload.wikimedia.org/wikipedia/en/thumb/6/6a/Mike_Wazowski.png/220px-Mike_Wazowski.png",
-    "redeemed": false
-  }
+	{
+		"contractAddress": "0xabcdef",
+		"contractType": "ERC721",
+		"contractName": "Mike W's Amazing Creations",
+		"ownerAddress": "user",
+		"numTokens": 0
+	}
 ]

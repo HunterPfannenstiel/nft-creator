@@ -40,7 +40,6 @@ const UserDashboardVouchersPage: FunctionComponent<
 
 	return (
 		<>
-			<h1>{user}&apos;s Vouchers</h1>
 			<nav>
 				<HighlightLink
 					href={`/dashboard/${user}/vouchers?claimed`}
@@ -64,8 +63,8 @@ const UserDashboardVouchersPage: FunctionComponent<
 					Created
 				</HighlightLink>
 			</nav>
-			{vouchers.map((voucher) => (
-				<div key={voucher.metadataURL} style={{ margin: '1rem 0' }}>
+			{vouchers.map((voucher, idx) => (
+				<div key={voucher.metadataURL + idx} style={{ margin: '1rem 0' }}>
 					<Voucher voucherDetails={voucher} />
 				</div>
 			))}

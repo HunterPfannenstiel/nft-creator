@@ -15,7 +15,8 @@ const UserDashboardLayout: FunctionComponent<UserDashboardLayoutProps> = ({
 	const { user } = params;
 	return (
 		<>
-			<nav>
+			<h1 className={classes.dashboard_header}>{user}&apos;s Dashboard</h1>
+			<nav className={classes.nav}>
 				<HighlightLink
 					href={`/dashboard/${user}/contracts`}
 					highlightClassName={classes.highlight}

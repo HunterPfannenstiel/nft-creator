@@ -10,6 +10,18 @@ export const getFileContracts = async () => {
 	return JSON.parse(contractsJson) as ContractDetails[];
 };
 
+export const getFileContractWithAddress = async (address: string) => {
+	const contracts = await getFileContracts();
+	return contracts.find(
+		(contractDetails) => contractDetails.contractAddress === address
+	);
+};
+
+export const fileContractExists = async (address: string) => {
+	const exists = (await getFileContractWithAddress(address)) !== undefined;
+	return exists;
+};
+
 export const getFileVouchers = async () => {
 	const vouchersJson = await fs.readFile(
 		'./lib/server/temp/db/vouchers.json',

@@ -11,7 +11,11 @@ export const getUserVouchers = async (
 	// Read from db or blockchain
 	await new Promise((resolve, reject) => setTimeout(() => resolve(''), 1000)); // simulate fetching
 	const vouchers = await getFileVouchers();
-	return vouchers.filter((voucher) => voucher.creatorAddress === user);
+	return vouchers.filter((voucher) =>
+		voucherFilter === 'created'
+			? voucher.creatorAddress === user
+			: voucher.claimerAddress === user
+	);
 
 	/* const vouchers: VoucherDetails[] = [
 		{

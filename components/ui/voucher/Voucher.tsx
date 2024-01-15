@@ -34,11 +34,11 @@ const Voucher: FunctionComponent<VoucherProps> = ({ voucherDetails }) => {
 				<div className={classes.attributes}>
 					<h3>Attributes:</h3>
 					<ul className={classes.attribute_list}>
-						<li>Name: Mike W.</li>
-						<li>Color: Green</li>
-						<li>Limbs: 4</li>
-						<li>Favorite Food: Oranges</li>
-						<li>Favorite Airline: Delta</li>
+						{Object.keys(voucherDetails.attributes).map((attrName) => (
+							<li key={attrName + voucherDetails.contractAddress}>
+								{attrName}: {voucherDetails.attributes[attrName].toString()}
+							</li>
+						))}
 					</ul>
 				</div>
 			</div>

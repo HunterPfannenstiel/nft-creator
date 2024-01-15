@@ -11,7 +11,7 @@ import FieldInput from '../../reusable/label-input/field-input';
 import { VoucherCreationDetails } from '@/types/voucher';
 import { concatClassNames } from '@/utils/css';
 import { useFormState } from 'react-dom';
-import { createVoucherFromForm } from '@/lib/voucher/voucher-creation';
+import { createVoucherFromForm } from '@/lib/server/voucher/voucher-creation';
 import DynamicInputs from '../../reusable/dynamic-inputs/DynamicInputs';
 
 interface VoucherCreationFormProps {

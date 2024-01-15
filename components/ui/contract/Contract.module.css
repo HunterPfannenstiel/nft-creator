@@ -1,0 +1,6 @@
+.container {
+    position: relative;
+    border: 2px solid seagreen;
+    max-width: 300px;
+    width: 100%;
+}
